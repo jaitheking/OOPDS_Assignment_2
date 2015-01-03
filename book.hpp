@@ -1,3 +1,5 @@
+#ifndef BOOK_HPP
+#define BOOK_HPP
 #include <string.h>
 #include <iostream>
 
@@ -28,3 +30,4 @@ class book{
 
 
 };
+#endif //BOOK_HP
