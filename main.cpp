@@ -26,8 +26,7 @@ list.push(newBook);
 break;
 case 3 :list.pop();
 break;
-//case 4:
-//cout<<list.peek()<<endl;
+case 4:list.peek();
 break;
 case 5 : list.makeEmpty();
 cout << "List is emptied\n\n";

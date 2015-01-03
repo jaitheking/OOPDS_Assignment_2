@@ -33,15 +33,15 @@ class Xstack
 
         }
 
-//        T peek(){
-//            T *element = new T;
-//            if (start == NULL)
-//                return element == NULL;
-//
-//            element = start->info;
-//                return element;
-//
-//        }
+        void peek(){
+            T element;
+            if (start == NULL)
+                cout<<"No first item to peek";
+
+            element = start->info;
+                cout<<"The first item is "<<element<<endl;
+
+        }
 
         void pop(){
 
