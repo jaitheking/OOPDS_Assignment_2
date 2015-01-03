@@ -14,20 +14,20 @@ cout << "Choice:\n"
 << "1: Display books\n"
 << "2: Push new book(Push into stack)\n"
 << "3: Pop the topmost book \n"
-<< "4: Blank\n"
+<< "4: Peek the top\n"
 << "5: Empty the list\n"
 << "Others: Exit\n";
 cin >> choice;
 switch (choice) {
 case 1 : cout << list << endl;
 break;
-case 2 : newBook = book("",++isbn);
+case 2 : newBook = book(++isbn);
 list.push(newBook);
 break;
 case 3 :list.pop();
 break;
-case 4:
-cout<<"Blank Feature."<<endl;
+//case 4:
+//cout<<list.peek()<<endl;
 break;
 case 5 : list.makeEmpty();
 cout << "List is emptied\n\n";

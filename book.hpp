@@ -9,13 +9,13 @@ class book{
     long int isbn;
 
     public:
-    book(string title="Book",long int isbn=0):title(title),isbn(isbn){}
+    book(long int isbn=0):title("Book"),isbn(isbn){}
     string getTitle(){ return title; }
     long int getIsbn(){ return isbn; }
     void setTitle() { this->title=title; }
     void setIsbn() { this->isbn=isbn; }
     friend ostream& operator<< (ostream& os,book& book){
-        os<<book.getTitle() << book.getIsbn();
+        os<<book.getTitle() <<","<< book.getIsbn()<<endl;
         return os;
     }
 
