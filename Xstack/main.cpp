@@ -7,7 +7,6 @@ int main() {
         long int isbn = 10000000; // seed for automatic value of x and y.
         Xstack<book> list;
         int choice; // user choice.
-        bool found;
         book newBook, target;
         do {
         cout << "Choice:\n"
@@ -35,7 +34,7 @@ int main() {
         break;
         case 6: list.swapTop();
         break;
-        case 7: list.roll();
+        case 7: list.roll(3);
         break;
         case 8: list.makeEmpty();
         cout << "List is emptied\n\n";

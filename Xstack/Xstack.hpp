@@ -15,28 +15,17 @@ class Xstack
 {
     Node<T> *start;
     public:
-         Xstack(){
+        Xstack(){ start = NULL; }
 
-            start = NULL;
-
-        }
-
-        ~Xstack(){
-
-            makeEmpty();
-
-        }
+        ~Xstack(){ makeEmpty(); }
 
         void push(T& newEl){
-
 
             Node<T> *newNode = new Node<T>;
             newNode->info = newEl;
             newNode->next = start;
             start = newNode;
-
-
-        }
+            }
 
         void peek(){
             T element;
@@ -115,35 +104,35 @@ class Xstack
             }
 
         }
-        void roll(){
-
-        if (start ==NULL)
+        void roll(int n){
+        if (start == NULL)
             cout<<"Nothing to roll with."<<endl;
 
-         else if (start->next==NULL)
-            cout<<"Nothing to roll with."<<endl;
+        else {
+
+            int total = 0;
+            Node<T> *ptr =start;
+
+            while(ptr->next !=NULL && total !=n){
+                tempptr=tempptr->next;
+                ptr=ptr->next;
+                total++;
+            }
+            if (n>total){
+                cout<<"Cannot perform roll at "<<n<<" amount(s)"<<endl;
+            }
 
 
-         else{
+            else{
+                start=start->next;
+                tempptr->next = ptr;
 
-                Node<T> *tempptr = start;
-                Node<T> *tempptr2 = start->next;
-                Node<T> *tempptr3 = start->next->next;
-                if (start->next->next->next == NULL)
-                    start=NULL;
-                else {
-                    start=start->next->next->next;
-                    }
-                tempptr->next=start;
-                tempptr3->next=tempptr;
-                tempptr2->next=tempptr3;
+                cout<<"Roll ("<<n<<") is successful."<<endl;
 
-                start =tempptr2;
-                cout<<"Roll (n=3) is successful."<<endl;
                 }
 
             }
-
+        }
 
 
 
