@@ -1,12 +1,15 @@
 #include "book.hpp"
 #include "Xstack.hpp"
 #include <iostream>
+
 using namespace std;
 
 int main() {
-        long int isbn = 10000000; // seed for automatic value of x and y.
+        long int isbn = 10000000; // Book`s ISBNs for automatic value of x and y.
         Xstack<book> list;
         int choice; // user choice.
+        string s; // user input for the roll function
+        int n; // user input for the roll function
         book newBook, target;
         do {
         cout << "Choice:\n"
@@ -34,10 +37,23 @@ int main() {
         break;
         case 6: list.swapTop();
         break;
-        case 7: list.roll(3);
+        case 7:
+                cout<<"Please enter an amount to perform roll"<<endl;
+                cin>>n;
+                try {
+                if ( n == 0 )
+                throw n;
+                list.roll(n);
+                }
+                catch (int n){
+                    cout<<"0 is an invalid input.Please try again.\n";
+                }
+
+
+
         break;
         case 8: list.makeEmpty();
-        cout << "List is emptied\n\n";
+        cout << "List is emptied\n";
         break;
         }
         } while (choice >= 1 && choice <= 8);

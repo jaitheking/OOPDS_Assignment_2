@@ -112,10 +112,10 @@ class Xstack
 
             int total = 0;
             Node<T> *ptr =start;
-
-            while(ptr->next !=NULL && total !=n){
+            Node<T> *tempptr= start;
+            while(tempptr->next !=NULL && total !=n){
                 tempptr=tempptr->next;
-                ptr=ptr->next;
+
                 total++;
             }
             if (n>total){
@@ -125,9 +125,10 @@ class Xstack
 
             else{
                 start=start->next;
+                ptr->next = tempptr->next;
                 tempptr->next = ptr;
 
-                cout<<"Roll ("<<n<<") is successful."<<endl;
+            cout<<"Roll ("<<n<<") is successful."<<endl;
 
                 }
 
