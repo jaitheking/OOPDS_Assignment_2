@@ -19,7 +19,7 @@ int main() {
         << "4: Peek the top\n"
         << "5: Duplicate\n"
         << "6: SwapTop\n"
-        << "7: Roll (n=3)\n"
+        << "7: Roll \n"
         << "8: Empty the list\n"
         << "Others: Exit\n";
         cin >> choice;

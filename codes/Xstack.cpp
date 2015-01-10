@@ -1,25 +1,13 @@
-#ifndef XSTACK_HPP
-#define XSTACK_HPP
-#include <iostream>
+#include "Xstack.hpp"
+#include "Node.hpp"
+template <class T>
+Xstack<T>::Xstack(){ top = NULL; }
 
-using namespace std;
-template <typename T>
-struct Node{
+template <class T>
+Xstack<T>::~Xstack(){ makeEmpty(); }
 
-    T info;
-    Node<T> *next;
-};
-
-template <typename T>
-class Xstack
-{
-    Node<T> *top;
-    public:
-        Xstack(){ top = NULL; };
-
-        ~Xstack(){ makeEmpty(); }
-
-        void push(T& newEl){
+template <class T>
+void Xstack<T>::push(T& newEl){
 
             Node<T> *newNode = new Node<T>;
             newNode->info = newEl;
@@ -27,7 +15,8 @@ class Xstack
             top = newNode;
             }
 
-        void peek(){
+template <class T>
+void Xstack<T>::peek(){
             T element;
             if (top == NULL)
                 cout<<"No first item to peek";
@@ -37,7 +26,8 @@ class Xstack
 
         }
 
-        void pop(){
+template <class T>
+void Xstack<T>::pop(){
 
                 Node<T> *ptr=top;
                 if ( top == NULL )
@@ -46,17 +36,17 @@ class Xstack
                     top = top->next;
                     delete ptr;
                 }
+            }
 
-
-        }
-
-        bool isEmpty(){
+template <class T>
+bool Xstack<T>::isEmpty(){
 
             return top ==NULL;
 
         }
 
-        void makeEmpty(){
+template <class T>
+void Xstack<T>::makeEmpty(){
 
             while(top !=NULL){
 
@@ -72,8 +62,8 @@ class Xstack
             }
 
         }
-
-        void duplicate(){
+template <class T>
+void Xstack<T>::duplicate(){
 
 
             Node<T> *newNode = new Node<T>;
@@ -82,7 +72,8 @@ class Xstack
             top = newNode;
 
         }
-        void swapTop(){
+template <class T>
+void Xstack<T>::swapTop(){
 
          if (top ==NULL)
             cout<<"Nothing to swap with."<<endl;
@@ -104,7 +95,8 @@ class Xstack
             }
 
         }
-        void roll(int n){
+template <class T>
+void Xstack<T>::roll(int n){
         if (top == NULL)
             cout<<"Nothing to roll with."<<endl;
 
@@ -137,31 +129,3 @@ class Xstack
 
 
 
-
-
-        friend ostream& operator<< (ostream& os, Xstack<T> &list){
-            cout<<"Displaying..."<<endl;
-            Node<T> *ptr =list.top;
-            if (ptr == NULL){
-                os << "List is empty."<<endl;
-            }
-            else{
-                os<<"top --> ";
-
-
-                while ( ptr != NULL ) {
-
-                     os<< ptr->info << " --> ";
-                    ptr = ptr->next;
-                }
-
-                    os<<" NULL";
-            }
-
-            return os;
-
-
-            }
-};
-
-#endif //X_STACK HPP

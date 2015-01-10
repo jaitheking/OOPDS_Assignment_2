@@ -3,14 +3,15 @@
 #include <fstream>
 #include <iostream>
 #include <string>
-#include <stack>
+#include "Xstack.hpp"
+#include "Xstack.cpp"
 #include <cstdlib>
 #include "BookItem.hpp"
 #include "BookItem.cpp"
 using namespace std;
 
 /* DO NOT MODIFY THIS FUNCTION IF YOU ARE NOT FAMILIAR! */
-void readData(const char* filename, stack<BookItem>*&stBooks) {
+void readData(const char* filename, Xstack<BookItem>*&stBooks) {
     string line;
     ifstream ifs(filename);
     if (ifs.is_open()) {
@@ -54,16 +55,29 @@ ostream& operator<<(ostream& os, const BookItem& s)
 int main()
 {
     // You are to replace the STL Stack with XStack that you have created
-    stack<BookItem>* stBooks = new stack<BookItem>();
+    Xstack<BookItem>* stBooks = new Xstack<BookItem>();
 
     // read database from text file, and store in the stack
     readData("db_small.txt", stBooks);
 
     // Sample code goes after here. Feel free to modify
     // Extra note: the top() method in STL Stack class is similar to peek() that we learnt
-    cout << "\nFrom top of stack:\n" << stBooks->top() << endl;
+    stBooks->peek();
     stBooks->pop();
-    cout << stBooks->top();
+    stBooks->peek();
+    readData("db_small.txt", stBooks);
+    int choice =0;
+    cin>>choice;
+    if (choice ==1){
+    cout<<"\n1 works.";
+    stBooks->peek();
+    }
+    else if (choice ==2){
+    cout<<"\n2 works.";
+    stBooks->makeEmpty();}
+    else
+    {cout<<"Ending...";
+    }
 
 	return 0;
 }
