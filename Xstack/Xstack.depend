@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1420605368 source:/home/jaitheking/Desktop/Programming/Assignment_2/Xstack/main.cpp
+1420865014 source:/home/jaitheking/Desktop/Programming/Assignment_2/Xstack/main.cpp
 	"book.hpp"
 	"Xstack.hpp"
 	<iostream>
@@ -8,9 +8,17 @@
 	<string.h>
 	<iostream>
 
-1420606207 /home/jaitheking/Desktop/Programming/Assignment_2/Xstack/Xstack.hpp
+1420865270 /home/jaitheking/Desktop/Programming/Assignment_2/Xstack/Xstack.hpp
 	<iostream>
+	"Node.hpp"
 
-1420606082 source:/home/jaitheking/Desktop/Programming/Assignment_2/Xstack/Xstack.cpp
+1420865257 source:/home/jaitheking/Desktop/Programming/Assignment_2/Xstack/Xstack.cpp
 	"Xstack.hpp"
+	"Node.hpp"
+
+1420864716 /home/jaitheking/Desktop/Programming/Assignment_2/Xstack/Node.hpp
+
+1420864750 /home/jaitheking/Desktop/Programming/Assignment_2/Xstack/Xstack.cpp
+	"Xstack.hpp"
+	"Node.hpp"
 

@@ -2,7 +2,7 @@
 #define XSTACK_HPP
 #include <iostream>
 #include "Node.hpp"
-
+#include "BookItem.hpp"
 using namespace std;
 
 template <typename T>
@@ -136,6 +136,20 @@ void roll(int n){
             }
         }
 
+void id_search(int id){
+    bool found = false;
+    Node<T> *ptr = top;
+    while(ptr->next != NULL && !found){
+        ptr=ptr->next;
+        if (ptr->info.fetch_serial() == id){
+         found = true;
+        }
+
+
+
+    }
+    cout<<ptr->info;
+}
 
 
         friend ostream& operator<< (ostream& os, Xstack<T> &list){
@@ -162,5 +176,7 @@ void roll(int n){
 
             }
 };
+
+
 
 #endif //X_STACK HPP

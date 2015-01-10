@@ -1,0 +1,32 @@
+# depslib dependency file v1.0
+1420865257 source:/home/jaitheking/Desktop/Programming/Assignment_2/Books/Xstack.cpp
+	"Xstack.hpp"
+	"Node.hpp"
+
+1420881596 /home/jaitheking/Desktop/Programming/Assignment_2/Books/Xstack.hpp
+	<iostream>
+	"Node.hpp"
+	"BookItem.hpp"
+
+1420864716 /home/jaitheking/Desktop/Programming/Assignment_2/Books/Node.hpp
+
+1420880800 source:/home/jaitheking/Desktop/Programming/Assignment_2/Books/BookItem.cpp
+	"BookItem.hpp"
+	<iostream>
+
+1420881371 /home/jaitheking/Desktop/Programming/Assignment_2/Books/BookItem.hpp
+	<iostream>
+	<string>
+
+1420881531 source:/home/jaitheking/Desktop/Programming/Assignment_2/Books/main.cpp
+	<fstream>
+	<iostream>
+	<string>
+	"Xstack.hpp"
+	<cstdlib>
+	"BookItem.hpp"
+
+1420867529 /home/jaitheking/Desktop/Programming/Assignment_2/Books/BookItem.cpp
+	"BookItem.hpp"
+	<iostream>
+
