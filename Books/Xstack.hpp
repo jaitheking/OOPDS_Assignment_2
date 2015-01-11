@@ -147,8 +147,9 @@ void makeEmpty(){
     }
 
         void findtop5sellers(Xstack<T> *& list){
-            Xstack<T> list2; //sorted stack
 
+            Xstack<T> list2; //sorted stack
+            int loop=0;
             while(!list->isEmpty()){
                 T x; // My x(Comparison)
                 T y; //
@@ -164,29 +165,32 @@ void makeEmpty(){
 
                 }
                 list2.push(x);
+
             }
+            Node<T> *ptr=list2.top;
+            do{
 
+            cout<<ptr->info<<endl;
+            loop++;
+            ptr=ptr->next;
 
-            cout<<list2.top->info;
-
+            }while ( ptr->next!= NULL && loop < 5);
         }
 
-void display_seller(){}
 
-
-        friend ostream& operator<< (ostream& os, Xstack<T> &list){
+        friend ostream& operator<< (ostream& os, Xstack<T> *&list){
             cout<<"Displaying..."<<endl;
-            Node<T> *ptr =list.top;
-            if (list.isEmpty()){
+            Node<T> *ptr =list->top;
+            if (list->isEmpty()){
                 os << "List is empty."<<endl;
             }
             else{
-                os<<"top --> ";
+                os<<"TOP --> ";
 
 
                 while ( ptr != NULL ) {
 
-                     os<<"\n"<< ptr->info << " --> \n";
+                     os<<"\n"<< ptr->info<<endl;
                     ptr = ptr->next;
                 }
 

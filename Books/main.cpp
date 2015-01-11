@@ -10,8 +10,19 @@
 using namespace std;
 //Initialise a new stack with Book Item class
 Xstack<BookItem>* Books = new Xstack<BookItem>();
+Xstack<BookItem>* Books2 = new Xstack<BookItem>(); //Used for Sorting
 BookItem book1();
 /* DO NOT MODIFY THIS FUNCTION IF YOU ARE NOT FAMILIAR! */
+
+void clearScreen() {
+                            #ifdef _WIN32
+                            system("cls");
+                            #endif
+                            #ifdef __linux__
+                            cout << "\x1B[H\x1B[2J";
+                            #endif
+            }
+
 void readData(const char* filename, Xstack<BookItem>*& stBooks)
 {
     string line;
@@ -60,7 +71,8 @@ void user_interface(){
         <<"\n5.Look for Top 5 best sellers"
         <<"\n6.Look for Bottom 5 worst sellers"
         <<"\n7.Look for 10 newest books"
-        <<"\n8.Exit"
+        <<"\n8.Display the list"
+        <<"\n9.Exit"
         <<"\nPlease enter your choice:";
         cin>>user_choice;
 
@@ -70,7 +82,8 @@ void user_interface(){
                 break;
         case 2: Books->swapTop();
                 break;
-        case 3: cout<<"Please enter an amount to perform roll"<<endl;
+        case 3: clearScreen();
+                cout<<"Please enter an amount to perform roll"<<endl;
                 cin>>rollnum;
                 try {
                 if ( rollnum == 0 )
@@ -81,18 +94,22 @@ void user_interface(){
                     cout<<"0 is an invalid input.Please try again.\n";
                 }
                 break;
-        case 4: cout<<"Please enter Serial Number of the book you wish to find:"<<endl;
+        case 4: clearScreen();
+                cout<<"Please enter Serial Number of the book you wish to find:"<<endl;
                 cin>>serial;
                 Books->serial_search(serial);
                 break;
-        case 5: Xstack<BookItem>* Books2 = new Xstack<BookItem>();
-                readData("db_small.txt", Books2);
+        case 5: readData("db_small.txt", Books2);
                 Books2->findtop5sellers(Books2);
-//        case 6:
-//        case 7:
-
+                delete Books2;
+                break;
+        case 6: break;
+        case 7:
+        case 8: clearScreen();
+                cout<<Books;
+                break;
         }
-    }while(user_choice >=1 && user_choice <=8);
+    }while(user_choice > 0 && user_choice < 9);
 
 
 }
@@ -103,6 +120,7 @@ int main()
 
     // read database from text file, and store in the stack
     readData("db_small.txt", Books);
+    clearScreen();
     user_interface();
 
 	return 0;
