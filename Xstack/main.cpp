@@ -21,7 +21,7 @@ int main() {
         << "5: Duplicate\n"
         << "6: SwapTop\n"
         << "7: Roll \n"
-        << "8: Empty the list\n"
+        << "8: Empty the stack\n"
         << "Others: Exit\n";
         cin >> choice;
         switch (choice) {

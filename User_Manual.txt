@@ -1,0 +1,45 @@
+****************************************************************
+THIS PROJECT BELONGS TO JAIPRASHANTH/1131122948/FCI
+****************************************************************
+Welcome,User!
+
+After downloading and extracting the folder,you will notice there are two folders.
+The assignment has two given tasks.
+
+1.Xstack 
+2.Book Statistics
+
+Inside the folder named 'Xstack' is where you can find the Xstack demo program. The second folder named 'Books' is where the second task of the assignment is stored. The E-leisure program for book statistics can be found there.
+
+Xstack demo program allows the user to pick up to 8 different options. 
+	Display books -> Shows user what is inside the stack.
+	Push a new book -> Will automatically add a new book into the stack.
+	Pop the topmost book -> Will top the book that appears on top of the stack.
+	Peek the top -> Will display to the user the book item that is on the top of the stack.
+	Duplicate -> Will duplicate the topmost item on the stack and place the copy on the top of the original.
+	SwapTop -> Will swap top item with the item below it in the stack
+	Roll -> Will roll the item on the top with nth position that user picks.
+	Empty the stack -> Will make the entire stack empty.	 
+-----------------------------------------------------------------
+
+E-leisure Book Statistics Program
+(Book List Management System)
+Similar to the Xstack demo program, it can perform Duplicate,SwapTop and Roll operations. In additional to that, it can perform:
+	Book search via Serial number -> Will allow user to search for a book with user-specified serial number.
+	Top 5 best sellers -> Display the top 5 best sellers that sold the most copies in descending order.
+	Bottom 5 worst sellers -> Display the 5 worst sellers that sold the least copies in ascending order.
+	10 newest books -> Display the 10 newest based on the year published and it is sorted in alphabetical order if the years are the same.
+	Top 'n' Unique Authors -> Allows user to search 'n' amount of unique authors with the most sold copies.
+
+
+---HOW TO USE---
+<Xstack Demo Program>
+1.After building the program, the user may notice the program can display of options.
+2.The user may decide on what to do next.
+3.To exit,user may enter any other value than 1-8 to end the program.
+
+<Book List Management System>
+
+1.After building the program, the user may notice the program can display of options.
+2.The user may decide on what to do next.
+3.To exit,user may enter any other value than 1-9 to end the program.

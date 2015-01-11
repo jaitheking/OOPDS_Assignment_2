@@ -29,7 +29,7 @@ void readData(const char* filename, Xstack<BookItem>*& stBooks)
     ifstream ifs(filename);
     if (ifs.is_open())
 {
-    cout << "Reading data...\n";
+    //cout << "Reading data...\n";
     int c = 0;
     while ( getline (ifs,line) && (*line.c_str() != '\0') )
         {
@@ -50,7 +50,7 @@ void readData(const char* filename, Xstack<BookItem>*& stBooks)
             BookItem b(atoi(token[0].c_str()), token[1], token[2], atoi(token[3].c_str()), atoi(token[4].c_str()));
             stBooks->push(b);
         }
-    cout << c << " row(s) read." << endl;
+    //cout << c << " row(s) read." << endl;
     ifs.close();
     }
     else
@@ -62,16 +62,16 @@ void user_interface(){
 
     do{
         Xstack<BookItem>* Books2 = new Xstack<BookItem>();
-        cout<<"\nWelcome to E-Leisure \n Book List Management System"
+        cout<<"\nWelcome to E-Leisure! \nBook List Management System"
         <<"\n1.Duplicate"
         <<"\n2.SwapTop"
         <<"\n3.Roll"
         <<"\n4.Book search via Serial Number"
-        <<"\n5.Look for Top 5 best sellers"
-        <<"\n6.Look for Bottom 5 worst sellers"
-        <<"\n7.Look for 10 newest books"
-        <<"\n8.Display the list"
-        <<"\n9.Search for Top 'n' Unique Authors"
+        <<"\n5.Top 5 best sellers"
+        <<"\n6.Bottom 5 worst sellers"
+        <<"\n7.10 newest books"
+        <<"\n8.Top 'n' Unique Authors"
+        <<"\n9.Display the list"
         <<"\n10.Exit"
         <<"\nPlease enter your choice:";
         cin>>user_choice;
@@ -115,14 +115,14 @@ void user_interface(){
                 delete Books2;
                 break;
         case 8: clearScreen();
-                cout<<Books;
-                break;
-        case 9: clearScreen();
                 readData("db_small.txt", Books2);
                 cout<<"Please enter the amount of authors to display:"<<endl;
                 cin>>n_authrs;
                 Books2->top_unique_authors(Books2,n_authrs);
                 delete Books2;
+        case 9: clearScreen();
+                cout<<Books;
+                break;
         }
     }while(user_choice > 0 && user_choice < 10);
 
