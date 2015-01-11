@@ -99,12 +99,21 @@ void user_interface(){
                 cin>>serial;
                 Books->serial_search(serial);
                 break;
-        case 5: readData("db_small.txt", Books2);
+        case 5: clearScreen();
+                readData("db_small.txt", Books2);
                 Books2->findtop5sellers(Books2);
                 delete Books2;
                 break;
-        case 6: break;
-        case 7:
+        case 6: clearScreen();
+                readData("db_small.txt", Books2);
+                Books2->findworst5sellers(Books2);
+                delete Books2;
+                break;
+        case 7: clearScreen();
+                readData("db_small.txt", Books2);
+                Books2->find_newest(Books2);
+                delete Books2;
+                break;
         case 8: clearScreen();
                 cout<<Books;
                 break;

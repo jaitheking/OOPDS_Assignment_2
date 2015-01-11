@@ -177,6 +177,82 @@ void makeEmpty(){
             }while ( ptr->next!= NULL && loop < 5);
         }
 
+        void findworst5sellers(Xstack<T> *& list){
+
+            Xstack<T> list2; //sorted stack
+            int loop=0;
+            while(!list->isEmpty()){
+                T x; // My x(Comparison)
+                T y; //
+                list->pop(x); //Pop the top el from the copied stack(list2) and into a temp (X)
+                //list3->peek(nextEl);//y,Peek at S2 to compare with X
+                //while (y >x) ,move y to the sorted stack
+                list2.peek(y);
+                while(!list2.isEmpty() && y.fetch_sold() < x.fetch_sold() ){
+                    T temp;
+                    list2.pop(temp);
+                    list->push(temp);
+                    list2.peek(y);
+
+                }
+                list2.push(x);
+
+            }
+            Node<T> *ptr=list2.top;
+            do{
+
+            cout<<ptr->info<<endl;
+            loop++;
+            ptr=ptr->next;
+
+            }while ( ptr->next!= NULL && loop < 5);
+        }
+
+        void find_newest(Xstack<T> *& list){
+
+            Xstack<T> list2; //sorted stack
+            int loop=0;
+            while(!list->isEmpty()){
+                T x; // My x(Comparison)
+                T y; //
+                list->pop(x); //Pop the top el from the copied stack(list2) and into a temp (X)
+                //list3->peek(nextEl);//y,Peek at S2 to compare with X
+                //while (y >x) ,move y to the sorted stack
+                list2.peek(y);
+                if (y.fetch_pubyear() == x.fetch_pubyear()){
+                    while(!list2.isEmpty() && y.fetch_title()<x.fetch_title() ){
+
+                            T temp;
+                            list2.pop(temp);
+                            list->push(temp);
+                            list2.peek(y);
+                        }
+
+                }
+
+                else {
+                    while(!list2.isEmpty() && y.fetch_pubyear() > x.fetch_pubyear() ){
+
+                            T temp;
+                            list2.pop(temp);
+                            list->push(temp);
+                            list2.peek(y);
+
+                      }
+                }
+                list2.push(x);
+
+            }
+            Node<T> *ptr=list2.top;
+            do{
+
+            cout<<ptr->info<<endl;
+            loop++;
+            ptr=ptr->next;
+
+            }while ( ptr->next!= NULL && loop < 11);
+        }
+
 
         friend ostream& operator<< (ostream& os, Xstack<T> *&list){
             cout<<"Displaying..."<<endl;
