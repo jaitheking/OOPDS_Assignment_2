@@ -18,6 +18,7 @@ public:
     int fetch_sold();
     int fetch_pubyear();
     string fetch_title();
+    string fetch_author();
 	friend ostream& operator<<(ostream& os, const BookItem& s){
     os << "<" << s.serialNum << "> " << s.title << " : "
        << s.author << " (" << s.yearPublished << ") - "

@@ -10,9 +10,9 @@
 using namespace std;
 //Initialise a new stack with Book Item class
 Xstack<BookItem>* Books = new Xstack<BookItem>();
-Xstack<BookItem>* Books2 = new Xstack<BookItem>(); //Used for Sorting
+ //Used for Sorting
 BookItem book1();
-/* DO NOT MODIFY THIS FUNCTION IF YOU ARE NOT FAMILIAR! */
+
 
 void clearScreen() {
                             #ifdef _WIN32
@@ -56,13 +56,12 @@ void readData(const char* filename, Xstack<BookItem>*& stBooks)
     else
     cout << "Unable to open file\n" << endl;
 }
-/* ************************************************ */
 
 void user_interface(){
-    int user_choice;
-    int serial;
-    int rollnum;
+    int user_choice,serial,rollnum,n_authrs;
+
     do{
+        Xstack<BookItem>* Books2 = new Xstack<BookItem>();
         cout<<"\nWelcome to E-Leisure \n Book List Management System"
         <<"\n1.Duplicate"
         <<"\n2.SwapTop"
@@ -72,7 +71,8 @@ void user_interface(){
         <<"\n6.Look for Bottom 5 worst sellers"
         <<"\n7.Look for 10 newest books"
         <<"\n8.Display the list"
-        <<"\n9.Exit"
+        <<"\n9.Search for Top 'n' Unique Authors"
+        <<"\n10.Exit"
         <<"\nPlease enter your choice:";
         cin>>user_choice;
 
@@ -117,8 +117,14 @@ void user_interface(){
         case 8: clearScreen();
                 cout<<Books;
                 break;
+        case 9: clearScreen();
+                readData("db_small.txt", Books2);
+                cout<<"Please enter the amount of authors to display:"<<endl;
+                cin>>n_authrs;
+                Books2->top_unique_authors(Books2,n_authrs);
+                delete Books2;
         }
-    }while(user_choice > 0 && user_choice < 9);
+    }while(user_choice > 0 && user_choice < 10);
 
 
 }
@@ -130,7 +136,7 @@ int main()
     // read database from text file, and store in the stack
     readData("db_small.txt", Books);
     clearScreen();
-    user_interface();
+    user_interface(); //Calls the user menu
 
 	return 0;
 }

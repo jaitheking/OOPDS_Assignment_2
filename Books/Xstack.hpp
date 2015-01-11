@@ -153,8 +153,8 @@ void makeEmpty(){
             while(!list->isEmpty()){
                 T x; // My x(Comparison)
                 T y; //
-                list->pop(x); //Pop the top el from the copied stack(list2) and into a temp (X)
-                //list3->peek(nextEl);//y,Peek at S2 to compare with X
+                list->pop(x);
+                //y,Peek at S2 to compare with X
                 //while (y >x) ,move y to the sorted stack
                 list2.peek(y);
                 while(!list2.isEmpty() && y.fetch_sold() > x.fetch_sold() ){
@@ -184,9 +184,8 @@ void makeEmpty(){
             while(!list->isEmpty()){
                 T x; // My x(Comparison)
                 T y; //
-                list->pop(x); //Pop the top el from the copied stack(list2) and into a temp (X)
-                //list3->peek(nextEl);//y,Peek at S2 to compare with X
-                //while (y >x) ,move y to the sorted stack
+                list->pop(x);
+                //while (y <x) ,move y to the sorted stack because we want bottom 5 sellers in ascending order;
                 list2.peek(y);
                 while(!list2.isEmpty() && y.fetch_sold() < x.fetch_sold() ){
                     T temp;
@@ -215,11 +214,11 @@ void makeEmpty(){
             while(!list->isEmpty()){
                 T x; // My x(Comparison)
                 T y; //
-                list->pop(x); //Pop the top el from the copied stack(list2) and into a temp (X)
-                //list3->peek(nextEl);//y,Peek at S2 to compare with X
-                //while (y >x) ,move y to the sorted stack
+                list->pop(x);
                 list2.peek(y);
                 if (y.fetch_pubyear() == x.fetch_pubyear()){
+                //The published year is the same the object will be
+                //arranged by alphabetical order instead
                     while(!list2.isEmpty() && y.fetch_title()<x.fetch_title() ){
 
                             T temp;
@@ -251,6 +250,58 @@ void makeEmpty(){
             ptr=ptr->next;
 
             }while ( ptr->next!= NULL && loop < 11);
+        }
+
+       void top_unique_authors(Xstack<T> *& list,int n){
+
+            Xstack<T> list2;//sorted stack
+            Xstack<T> list3; //unique stack
+            int loop=1;
+            while(!list->isEmpty()){
+                T x; // My x(Comparison)
+                T y; //
+                list->pop(x);
+                //y,Peek at S2 to compare with X
+                //while (y >x) ,move y to the sorted stack
+                list2.peek(y);
+                while(!list2.isEmpty() && y.fetch_sold() < x.fetch_sold() ){
+                    T temp;
+                    list2.pop(temp);
+                    list->push(temp);
+                    list2.peek(y);
+
+                }
+                list2.push(x);
+
+            }
+
+            while(!list2.isEmpty()){
+                T x;
+                T y;
+                list2.pop(x);
+                list3.peek(y);
+                if (y.fetch_author() == x.fetch_author()){
+                    if(x.fetch_sold() > y.fetch_sold()){
+                        list3.pop(y);
+
+                    }
+
+
+                }
+               list3.push(x);
+            }
+
+
+            Node<T> *ptr=list3.top;
+            cout<<"Top "<<n<<" Authors:"
+            <<"\nAuthor: | Copies Sold:"<<endl;
+            do{
+
+            cout<<ptr->info.fetch_author()<<"  |  "<<ptr->info.fetch_sold()<<endl;
+            loop++;
+            ptr=ptr->next;
+
+            }while ( ptr->next!= NULL && loop < n+1);
         }
 
 
