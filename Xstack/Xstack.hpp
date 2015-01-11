@@ -25,26 +25,31 @@ void push(T& newEl){
             }
 
 
-void peek(){
-            T element;
-            if (top == NULL)
+bool peek(T& element){
+
+            if (top == NULL){
                 cout<<"No first item to peek";
-
+                return false;
+            }
             element = top->info;
-                cout<<element<<" is on the top of the stack"<<endl;
-
+            cout<<element<<" is on top of the stack."<<endl;
+                return true;
         }
 
 
-void pop(){
+    bool pop(T& element){
 
-                Node<T> *ptr=top;
-                if ( top == NULL )
+
+                if ( top == NULL ){
+                    return false;
                     cout<<"List is empty"<<endl;
-                else{
+                }
+                    element = top->info;
+                    Node<T> *ptr=top;
                     top = top->next;
                     delete ptr;
-                }
+                    return true;
+
             }
 
 
@@ -57,18 +62,8 @@ bool isEmpty(){
 
 void makeEmpty(){
 
-            while(top !=NULL){
-
-                pop();
-                cout<<"List is emptied."<<endl;
-
-            }
-
-            if(top == NULL){
-
-                cout<<"List is empty."<<endl;
-
-            }
+            T temp;
+            while (pop(temp));
 
         }
 

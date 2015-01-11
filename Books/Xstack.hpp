@@ -11,12 +11,12 @@ class Xstack
     Node<T> *top;
     public:
         Xstack(){ top = NULL; }
-
+        Xstack(const Xstack<T> &list){}
 
 ~Xstack(){ makeEmpty(); }
 
 
-void push(T& newEl){
+    void push(T& newEl){
 
             Node<T> *newNode = new Node<T>;
             newNode->info = newEl;
@@ -25,30 +25,32 @@ void push(T& newEl){
             }
 
 
-void peek(){
-            T element;
+    bool peek(T& element){
+
             if (top == NULL)
-                cout<<"No first item to peek";
-
+                return false;
             element = top->info;
-                cout<<element<<" is on the top of the stack"<<endl;
-
+                return true;
         }
 
 
-void pop(){
+    bool pop(T& element){
 
-                Node<T> *ptr=top;
-                if ( top == NULL )
+
+                if ( top == NULL ){
+                    return false;
                     cout<<"List is empty"<<endl;
-                else{
+                }
+                    element = top->info;
+                    Node<T> *ptr=top;
                     top = top->next;
                     delete ptr;
-                }
+                    return true;
+
             }
 
 
-bool isEmpty(){
+    bool isEmpty(){
 
             return top ==NULL;
 
@@ -57,22 +59,12 @@ bool isEmpty(){
 
 void makeEmpty(){
 
-            while(top !=NULL){
-
-                pop();
-                cout<<"List is emptied."<<endl;
-
-            }
-
-            if(top == NULL){
-
-                cout<<"List is empty."<<endl;
-
-            }
+            T temp;
+            while (pop(temp));
 
         }
 
-void duplicate(){
+    void duplicate(){
 
 
             Node<T> *newNode = new Node<T>;
@@ -82,7 +74,7 @@ void duplicate(){
 
         }
 
-void swapTop(){
+    void swapTop(){
 
          if (top ==NULL)
             cout<<"Nothing to swap with."<<endl;
@@ -105,7 +97,7 @@ void swapTop(){
 
         }
 
-void roll(int n){
+    void roll(int n){
         if (top == NULL)
             cout<<"Nothing to roll with."<<endl;
 
@@ -136,26 +128,56 @@ void roll(int n){
             }
         }
 
-void id_search(int id){
-    bool found = false;
-    Node<T> *ptr = top;
-    while(ptr->next != NULL && !found){
-        ptr=ptr->next;
-        if (ptr->info.fetch_serial() == id){
-         found = true;
+    void serial_search(int serial){
+        bool found = false;
+        Node<T> *ptr = top;
+        while(ptr->next != NULL && !found){
+            ptr=ptr->next;
+            if (ptr->info.fetch_serial() == serial){
+                found = true;
+                cout<<ptr->info;
+            }
+            else if(ptr->next == NULL){
+            cout<<"There is no book with such serial number,"<<serial<<endl;
+            }
+
+
         }
 
-
-
     }
-    cout<<ptr->info;
-}
+
+        void findtop5sellers(Xstack<T> *& list){
+            Xstack<T> list2; //sorted stack
+
+            while(!list->isEmpty()){
+                T x; // My x(Comparison)
+                T y; //
+                list->pop(x); //Pop the top el from the copied stack(list2) and into a temp (X)
+                //list3->peek(nextEl);//y,Peek at S2 to compare with X
+                //while (y >x) ,move y to the sorted stack
+                list2.peek(y);
+                while(!list2.isEmpty() && y.fetch_sold() > x.fetch_sold() ){
+                    T temp;
+                    list2.pop(temp);
+                    list->push(temp);
+                    list2.peek(y);
+
+                }
+                list2.push(x);
+            }
+
+
+            cout<<list2.top->info;
+
+        }
+
+void display_seller(){}
 
 
         friend ostream& operator<< (ostream& os, Xstack<T> &list){
             cout<<"Displaying..."<<endl;
             Node<T> *ptr =list.top;
-            if (ptr == NULL){
+            if (list.isEmpty()){
                 os << "List is empty."<<endl;
             }
             else{
@@ -164,7 +186,7 @@ void id_search(int id){
 
                 while ( ptr != NULL ) {
 
-                     os<< ptr->info << " --> ";
+                     os<<"\n"<< ptr->info << " --> \n";
                     ptr = ptr->next;
                 }
 

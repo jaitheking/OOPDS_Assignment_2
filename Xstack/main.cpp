@@ -7,6 +7,7 @@ using namespace std;
 int main() {
         long int isbn = 10000000; // Book`s ISBNs for automatic value of x and y.
         Xstack<book> list;
+        book book_1;
         int choice; // user choice.
         string s; // user input for the roll function
         int n; // user input for the roll function
@@ -24,21 +25,21 @@ int main() {
         << "Others: Exit\n";
         cin >> choice;
         switch (choice) {
-        case 1 : cout << list << endl;
-        break;
-        case 2 : newBook = book(++isbn);
-        list.push(newBook);
-        break;
-        case 3 :list.pop();
-        break;
-        case 4:list.peek();
-        break;
+        case 1 :cout << list << endl;
+                break;
+        case 2 :newBook = book(++isbn);
+                list.push(newBook);
+                break;
+        case 3 :list.pop(book_1);
+                cout<<book_1<<" has been popped."<<endl;
+                break;
+        case 4:list.peek(book_1);
+                break;
         case 5 :list.duplicate();
-        break;
+                break;
         case 6: list.swapTop();
-        break;
-        case 7:
-                cout<<"Please enter an amount to perform roll"<<endl;
+                break;
+        case 7: cout<<"Please enter an amount to perform roll"<<endl;
                 cin>>n;
                 try {
                 if ( n == 0 )
@@ -46,15 +47,12 @@ int main() {
                 list.roll(n);
                 }
                 catch (int n){
-                    cout<<"0 is an invalid input.Please try again.\n";
+                   cout<<"0 is an invalid input.Please try again.\n";
                 }
-
-
-
-        break;
+                break;
         case 8: list.makeEmpty();
-        cout << "List is emptied\n";
-        break;
-        }
+                cout << "List is emptied\n";
+                break;
+            }
         } while (choice >= 1 && choice <= 8);
 }

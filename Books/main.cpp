@@ -8,7 +8,9 @@
 #include "BookItem.hpp"
 
 using namespace std;
-
+//Initialise a new stack with Book Item class
+Xstack<BookItem>* Books = new Xstack<BookItem>();
+BookItem book1();
 /* DO NOT MODIFY THIS FUNCTION IF YOU ARE NOT FAMILIAR! */
 void readData(const char* filename, Xstack<BookItem>*& stBooks)
 {
@@ -27,11 +29,11 @@ void readData(const char* filename, Xstack<BookItem>*& stBooks)
             while ((pos = line.find(delimiter)) != string::npos)
                 {
                 token[++f] = line.substr(0, pos);
-                cout << " " << token[f] << " | " ;
+                //cout << " " << token[f] << " | " ;
                 line.erase(0, pos + delimiter.length());
                 }
             token[++f] = line;
-            cout << token[f] << endl; // last item in string
+            //cout << token[f] << endl; // last item in string
             c++;
             // push to stack (numerical data converted to int)
             BookItem b(atoi(token[0].c_str()), token[1], token[2], atoi(token[3].c_str()), atoi(token[4].c_str()));
@@ -45,23 +47,63 @@ void readData(const char* filename, Xstack<BookItem>*& stBooks)
 }
 /* ************************************************ */
 
+void user_interface(){
+    int user_choice;
+    int serial;
+    int rollnum;
+    do{
+        cout<<"\nWelcome to E-Leisure \n Book List Management System"
+        <<"\n1.Duplicate"
+        <<"\n2.SwapTop"
+        <<"\n3.Roll"
+        <<"\n4.Book search via Serial Number"
+        <<"\n5.Look for Top 5 best sellers"
+        <<"\n6.Look for Bottom 5 worst sellers"
+        <<"\n7.Look for 10 newest books"
+        <<"\n8.Exit"
+        <<"\nPlease enter your choice:";
+        cin>>user_choice;
+
+        switch(user_choice){
+
+        case 1: Books->duplicate();
+                break;
+        case 2: Books->swapTop();
+                break;
+        case 3: cout<<"Please enter an amount to perform roll"<<endl;
+                cin>>rollnum;
+                try {
+                if ( rollnum == 0 )
+                throw rollnum;
+                Books->roll(rollnum);
+                }
+                catch (int rollnum){
+                    cout<<"0 is an invalid input.Please try again.\n";
+                }
+                break;
+        case 4: cout<<"Please enter Serial Number of the book you wish to find:"<<endl;
+                cin>>serial;
+                Books->serial_search(serial);
+                break;
+        case 5: Xstack<BookItem>* Books2 = new Xstack<BookItem>();
+                readData("db_small.txt", Books2);
+                Books2->findtop5sellers(Books2);
+//        case 6:
+//        case 7:
+
+        }
+    }while(user_choice >=1 && user_choice <=8);
+
+
+}
 
 
 int main()
 {
-    //Initialise a new stack with Book Item class
-    Xstack<BookItem>* Books = new Xstack<BookItem>();
-    BookItem book1();
-    //BookItem book_el(24504,"The Old Man and the Sea,Ernest Hemingway",1951,135);
+
     // read database from text file, and store in the stack
     readData("db_small.txt", Books);
-
-    // Sample code goes after here. Feel free to modify
-    // Extra note: the top() method in STL Stack class is similar to peek() that we learnt
-    Books->peek();
-    Books->pop();
-    Books->peek();
-    Books->id_search(24504);
+    user_interface();
 
 	return 0;
 }
