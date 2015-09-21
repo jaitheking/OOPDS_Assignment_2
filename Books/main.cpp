@@ -100,27 +100,26 @@ void user_interface(){
                 Books->serial_search(serial);
                 break;
         case 5: clearScreen();
-                readData("db_big.txt", Books2);
+                readData("db_small.txt", Books2);
                 Books2->findtop5sellers(Books2);
                 delete Books2;
                 break;
         case 6: clearScreen();
-                readData("db_big.txt", Books2);
+                readData("db_small.txt", Books2);
                 Books2->findworst5sellers(Books2);
                 delete Books2;
                 break;
         case 7: clearScreen();
-                readData("db_big.txt", Books2);
+                readData("db_small.txt", Books2);
                 Books2->find_newest(Books2);
                 delete Books2;
                 break;
         case 8: clearScreen();
-                readData("db_big.txt", Books2);
+                readData("db_small.txt", Books2);
                 cout<<"Please enter the amount of authors to display:"<<endl;
                 cin>>n_authrs;
                 Books2->top_unique_authors(Books2,n_authrs);
                 delete Books2;
-                break;
         case 9: clearScreen();
                 cout<<Books;
                 break;
@@ -135,7 +134,7 @@ int main()
 {
 
     // read database from text file, and store in the stack
-    readData("db_big.txt", Books);
+    readData("db_small.txt", Books);
     clearScreen();
     user_interface(); //Calls the user menu
 
